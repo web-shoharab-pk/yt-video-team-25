@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import HomeScreen from './screen/HomeScreen/HomeScreen';
+// import LoginScreen from './screen/LoginScreen/LoginScreen';
 import './style/_app.scss'
 
 
@@ -20,12 +21,13 @@ console.log(sidebar)
         <>
             <Header handleToggleSidebar={handleToggleSidebar} />
             <div className="app__container border border-info">
-                <Sidebar sidebar={sidebar} />
+                <Sidebar   sidebar={sidebar} handleToggleSidebar={handleToggleSidebar}  />
 
                 <Container fluid className="app__main border border-warning">
                     <HomeScreen />
                 </Container>
             </div>
+ 
         </>
     );
 };
