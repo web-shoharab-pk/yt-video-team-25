@@ -9,13 +9,16 @@
     align-items: center;
     padding: 1rem 3rem;
     background-color: $black-primary;
+    position: fixed;
+    top: 0;
+    z-index: 999;
     &__menu{
       display: none;   
     }
     &__logo{
       height: 30px;
       width: 40px;
-      object-fit: content;
+      object-fit: content; 
       display: block;  
     }
     form{
