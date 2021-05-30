@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import CategoriesBar from '../../components/CategoriesBar/CategoriesBar';
 import Video from '../../components/Video/Video';
 import { getPopularVideos, getVideosByCategory } from '../../redux/action/video.action';
-import InfiniteScroll from 'react-infinite-scroll-component';
-
+import InfiniteScroll from 'react-infinite-scroll-component'; 
+import SkeletonVideo from '../../components/Skeleton/SkeletonVideo';
 
 
 const HomeScreen = () => {
@@ -16,7 +16,7 @@ const HomeScreen = () => {
         dispatch(getPopularVideos())
     }, [dispatch])
 
-    const { videos, activeCategory} = useSelector(state => state.homeVideos)
+    const { videos, activeCategory, loading} = useSelector(state => state.homeVideos)
     console.log(videos)
      const fetchData = () => {
          if(activeCategory === 'All')
@@ -39,13 +39,17 @@ const HomeScreen = () => {
             }
             className='row'>
 
-                    {
-                        videos.map((video) => (
+                    { loading ? [...Array(40)].map(() => <Col lg={4} md={3}>
+                         <SkeletonVideo />
+                        </Col> )  
+                        
+
+                        : videos.map((video) => (
                             <Col lg={3} md={4}>
                                 <Video video={video} key={video.id}></Video>
                             </Col>
                         ))
-                    }
+                    } 
 
                 </InfiniteScroll>
             </Row>
